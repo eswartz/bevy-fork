@@ -1,6 +1,6 @@
 [package]
 name = "bevy_reflect"
-version = "0.18.1"
+version = "0.18.1-dev"
 edition = "2024"
 description = "Dynamically interact with rust types"
 homepage = "https://bevy.org"

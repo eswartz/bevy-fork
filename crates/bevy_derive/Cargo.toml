@@ -1,6 +1,6 @@
 [package]
 name = "bevy_derive"
-version = "0.18.1"
+version = "0.18.1-dev"
 edition = "2024"
 description = "Provides derive implementations for Bevy Engine"
 homepage = "https://bevy.org"
