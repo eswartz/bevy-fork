@@ -12,6 +12,9 @@ repository = "https://github.com/bevyengine/bevy"
 documentation = "https://docs.rs/bevy"
 rust-version = "1.95.0"
 
+[patch.crates-io]
+gltf = { git = "https://github.com/gltf-rs/gltf.git", branch = "main" }
+
 [workspace]
 resolver = "3"
 members = [
@@ -5551,3 +5554,4 @@ name = "Light Probe Blending"
 description = "Demonstrates blending between multiple reflection probes"
 category = "3D Rendering"
 wasm = false
+

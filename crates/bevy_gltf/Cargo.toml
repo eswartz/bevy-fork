@@ -54,6 +54,7 @@ gltf = { version = "1.4.0", default-features = false, features = [
   "extensions",
   "names",
   "utils",
+  "EXT_texture_webp",
 ] }
 async-lock = { version = "3.0", default-features = false }
 thiserror = { version = "2", default-features = false }
