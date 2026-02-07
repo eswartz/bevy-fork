@@ -12,6 +12,9 @@ repository = "https://github.com/bevyengine/bevy"
 documentation = "https://docs.rs/bevy"
 rust-version = "1.89.0"
 
+[patch.crates-io]
+gltf = { git = "https://github.com/gltf-rs/gltf.git", branch = "main" }
+
 [workspace]
 resolver = "2"
 members = [
