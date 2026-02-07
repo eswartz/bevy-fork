@@ -6,6 +6,7 @@
 use bevy::{
     camera_controller::free_camera::FreeCamera, gltf::Gltf,
     input::common_conditions::input_just_pressed, prelude::*, scene::InstanceId,
+    mesh::skinning::SkinnedMesh, camera::visibility::NoFrustumCulling,
 };
 
 use std::{f32::consts::*, fmt};
@@ -65,6 +66,7 @@ impl Plugin for SceneViewerPlugin {
     fn build(&self, app: &mut App) {
         app.init_resource::<CameraTracker>()
             .add_systems(PreUpdate, scene_load_check)
+            .add_systems(PreUpdate, disable_culling_for_skinned_meshes)
             .add_systems(
                 Update,
                 (
@@ -136,6 +138,19 @@ fn scene_load_check(
             }
         }
         Some(_) => {}
+    }
+}
+
+/// System that automatically disables frustum culling for
+/// all skinned meshes, as soon as they are added to the world.
+/// Without this, parts of animated meshes may be unexpectedly culled.
+/// See https://github.com/bevyengine/bevy/issues/4971.
+fn disable_culling_for_skinned_meshes(
+    mut commands: Commands,
+    skinned: Query<Entity, Added<SkinnedMesh>>,
+) {
+    for entity in &skinned {
+        commands.entity(entity).insert(NoFrustumCulling);
     }
 }
 

@@ -241,7 +241,7 @@ pub fn run_freecamera_controller(
     scroll += amount;
     state.speed_multiplier += scroll * config.scroll_factor;
     // Clamp the speed multiplier for safety
-    state.speed_multiplier = state.speed_multiplier.clamp(0.0, f32::MAX);
+    state.speed_multiplier = state.speed_multiplier.clamp(0.000001, f32::MAX);
 
     // Handle key input
     let mut axis_input = Vec3::ZERO;

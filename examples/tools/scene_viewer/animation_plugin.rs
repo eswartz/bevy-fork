@@ -126,6 +126,17 @@ fn assign_clips(
             player_to_graph.entry(ancestor_player).or_default();
         let node_index = graph.add_clip(clip_handle, 1.0, graph.root);
         clip_indices.push(node_index);
+
+        let mut anim_name = None;
+	for (name, aclip) in &gltf.named_animations {
+           if aclip.id() == clip_id {
+                anim_name = Some(name.to_string());
+                break;
+            }
+        }
+
+        let anim_name = anim_name.unwrap_or_else(|| format!("{clip_id}"));
+        info!("Clip {node_index:?} is {anim_name}");
     }
 
     // Now that we've built up a list of all clips that belong to each player,
@@ -177,6 +188,7 @@ fn handle_inputs(
             clips.advance_to_next();
             let current_clip = clips.current();
             player.play(current_clip).repeat();
+            info!("clip: {current_clip:?}");
             if paused {
                 player.pause_all();
             }
